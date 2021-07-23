@@ -1,0 +1,19 @@
+# Retrieve the links of the anchor tags, do it for 7 times.
+url = input('Enter - ')
+count = int(input('Enter count: ')) -1
+pos = int(input('Enter position: '))-1
+
+def get_html(url):
+    html = urllib.request.urlopen(url).read()
+    soup = BeautifulSoup(html, 'html.parser')
+    return soup
+
+for i in range(0, count):
+    tag_lst = list()
+    for tag in get_html(url)('a'):
+        tag_lst.append(tag)
+        url = tag_lst[pos].get('href', None)
+        print(url)
+        urllist = list()
+        urllist.append(url) 
+        print(urllist[-1])
